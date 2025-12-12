@@ -1,0 +1,103 @@
+Swipies AI Telegram Bot
+
+This project is a simple Telegram bot integration that connects Swipies AI (RAGFlow) with Telegram using the aiogram framework.
+It allows users to send any message to the bot, and the bot will forward the text to the Swipies AI API and return the generated response back to the chat.
+
+✨ Features
+
+Connects Telegram bot → Swipies AI (RAGFlow)
+
+Sends user messages to the Swipies AI chat completion API
+
+Handles streaming-like Swipies AI responses (parses data: chunks)
+
+Shows “typing…” status while generating
+
+Fully asynchronous using aiogram and httpx
+
+📌 Requirements
+
+Make sure you have installed:
+
+Python 3.10+
+aiogram==3.x
+httpx
+
+
+Install dependencies:
+
+pip install aiogram httpx
+
+📁 Project Structure
+main.py
+
+
+Everything is inside one file for simplicity.
+
+🔧 Environment Variables
+
+Before running, you must fill in these fields:
+
+TELEGRAM_TOKEN = ""        # Your Telegram Bot API token
+RAGFLOW_API_KEY = ""       # Your Swipies AI (RAGFlow) API Key
+CHAT_ID = ""               # Optional (not used in this script)
+
+
+Also update the authorization header here:
+
+"Authorization": "Bearer <your-ragflow-key>"
+
+🚀 How It Works
+1. User writes a message to the bot
+2. The bot sends the message text to this endpoint:
+POST https://api.swipies.app/api/v1/chats_openai/<chat_id>/chat/completions
+
+
+(Currently using chat ID 88584bb6d5fa11f0968c96bf0244a63a in the code)
+
+3. Swipies AI returns streaming data in the format:
+data:{...JSON...}
+data:{...JSON...}
+data:[DONE]
+
+4. The script parses and reconstructs the final answer
+5. The bot replies to the user with the output
+▶️ Run the Bot
+
+Simply run:
+
+python main.py
+
+
+If the token is correct, the bot will start polling Telegram.
+
+🧠 Swipies Request Function
+
+The core function is:
+
+async def swipies_request(text: str) -> str:
+
+
+It sends the user prompt to Swipies AI and returns the final generated text.
+
+📬 Example Interaction
+
+User:
+
+Hello, what can you do?
+
+Bot:
+
+I am Swipies AI assistant, ready to help you…
+
+⚠️ Notes
+
+Replace the hard-coded API key with environment variables for production.
+
+This version does not support streaming to Telegram, only final text output.
+
+Make sure your Swipies AI chat ID and model name are valid.
+
+📄 License
+
+This project is free to use and modify.

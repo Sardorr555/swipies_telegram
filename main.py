@@ -21,7 +21,7 @@ dp.include_router(router)
 
 
 async def swipies_request(text: str) -> str:
-    url = f"https://api.swipies.app/api/v1/chats_openai/88584bb6d5fa11f0968c96bf0244a63a/chat/completions"
+    url = f"https://api.swipies.app/api/v1/chats_openai/CHAT_ID/chat/completions"
 
     headers = {
         "Authorization": "Bearer ragflow-Snlz91W1HWulWDc7K-Do0_JW0tqVL8lAFuz_LTnOfkU",
