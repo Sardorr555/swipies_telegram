@@ -1,103 +1,166 @@
-Swipies AI Telegram Bot
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Swipies AI Telegram Bot — README</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c5cff; --glass:rgba(255,255,255,0.03);
+      --maxw:900px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial; background:linear-gradient(180deg,#071023 0%, #081026 40%, #06101a 100%); color:#e6eef8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      display:flex; align-items:center; justify-content:center; padding:40px;
+    }
+    .container{width:100%; max-width:var(--maxw); background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; padding:28px; box-shadow:0 10px 30px rgba(2,6,23,0.7); border:1px solid rgba(255,255,255,0.03);} 
+    header{display:flex; gap:16px; align-items:center;}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#4ac1ff); display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:20px;box-shadow:0 6px 20px rgba(124,92,255,0.18)}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 0;color:var(--muted);font-size:14px}
 
-This project is a simple Telegram bot integration that connects Swipies AI (RAGFlow) with Telegram using the aiogram framework.
-It allows users to send any message to the bot, and the bot will forward the text to the Swipies AI API and return the generated response back to the chat.
+    main{margin-top:18px; display:grid; grid-template-columns:1fr; gap:18px}
+    .card{background:var(--card); border-radius:12px; padding:18px; border:1px solid var(--glass)}
+    h2{margin:0 0 10px 0; font-size:16px}
+    ul{margin:0;padding-left:20px;color:var(--muted)}
+    li{margin:8px 0}
 
-✨ Features
+    pre{background:rgba(10,14,20,0.6); padding:14px; border-radius:8px; overflow:auto; color:#dff0ff; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; font-size:13px; margin:10px 0}
+    code{font-family:inherit}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:600;font-size:13px;border:1px solid rgba(255,255,255,0.02)}
 
-Connects Telegram bot → Swipies AI (RAGFlow)
+    .grid{display:grid;grid-template-columns:1fr 1fr; gap:12px}
+    @media (max-width:720px){.grid{grid-template-columns:1fr}}
 
-Sends user messages to the Swipies AI chat completion API
+    .muted{color:var(--muted);font-size:14px}
+    .accent{color:var(--accent);font-weight:700}
+    .small{font-size:13px;color:var(--muted)}
 
-Handles streaming-like Swipies AI responses (parses data: chunks)
+    .actions{display:flex;gap:8px;align-items:center}
+    button.copy{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
+    button.copy:hover{color:white}
 
-Shows “typing…” status while generating
+    footer{margin-top:14px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">SA</div>
+      <div>
+        <h1>Swipies AI Telegram Bot</h1>
+        <p class="lead">Simple Telegram bot that connects <span class="accent">Swipies AI (RAGFlow)</span> with Telegram using <span class="badge">aiogram</span> and <span class="badge">httpx</span>.</p>
+      </div>
+    </header>
 
-Fully asynchronous using aiogram and httpx
+    <main>
+      <section class="card">
+        <h2>✨ What it does</h2>
+        <p class="muted">This project forwards messages from Telegram users to a Swipies AI chat completion endpoint and returns the generated response back to the chat. It's asynchronous and minimal — perfect as a starting point for more advanced integrations.</p>
+      </section>
 
-📌 Requirements
+      <section class="card">
+        <h2>✨ Features</h2>
+        <ul>
+          <li>Connects Telegram bot → Swipies AI (RAGFlow)</li>
+          <li>Sends user messages to the Swipies AI chat completion API</li>
+          <li>Parses streaming-like <code>data:</code> chunks and reconstructs final text</li>
+          <li>Shows “typing…” status while generating</li>
+          <li>Fully asynchronous using <code>aiogram</code> and <code>httpx</code></li>
+        </ul>
+      </section>
 
-Make sure you have installed:
+      <section class="card">
+        <h2>📌 Requirements</h2>
+        <p class="small">Make sure you have Python 3.10+ and the required packages installed.</p>
+        <pre><code>pip install aiogram httpx</code></pre>
+      </section>
 
-Python 3.10+
-aiogram==3.x
-httpx
+      <section class="card">
+        <h2>📁 Project Structure</h2>
+        <p class="muted">Everything is inside one file for simplicity:</p>
+        <pre><code>main.py</code></pre>
+      </section>
 
-
-Install dependencies:
-
-pip install aiogram httpx
-
-📁 Project Structure
-main.py
-
-
-Everything is inside one file for simplicity.
-
-🔧 Environment Variables
-
-Before running, you must fill in these fields:
-
-TELEGRAM_TOKEN = ""        # Your Telegram Bot API token
+      <section class="card">
+        <h2>🔧 Environment Variables</h2>
+        <p class="muted">Before running, fill these fields in the script or — better — read them from a <code>.env</code> file / environment variables:</p>
+        <pre><code>TELEGRAM_TOKEN = ""        # Your Telegram Bot API token
 RAGFLOW_API_KEY = ""       # Your Swipies AI (RAGFlow) API Key
 CHAT_ID = ""               # Optional (not used in this script)
 
+# Also update the authorization header:
+"Authorization": "Bearer &lt;your-ragflow-key&gt;"
+</code></pre>
+      </section>
 
-Also update the authorization header here:
+      <section class="card">
+        <h2>🚀 How It Works</h2>
+        <ol class="muted">
+          <li>User writes a message to the bot.</li>
+          <li>The bot sends the message to the Swipies API endpoint:<br><code>POST https://api.swipies.app/api/v1/chats_openai/&lt;chat_id&gt;/chat/completions</code></li>
+          <li>Swipies returns streaming chunks like <code>data:{...JSON...}</code> and <code>data:[DONE]</code>.</li>
+          <li>The script parses and reconstructs the final answer.</li>
+          <li>The bot replies to the user with the generated output.</li>
+        </ol>
+      </section>
 
-"Authorization": "Bearer <your-ragflow-key>"
+      <section class="card">
+        <h2>▶️ Run the Bot</h2>
+        <p class="muted">Start the bot with Python:</p>
+        <pre><code>python main.py</code></pre>
+        <p class="small">If the token is correct, the bot will start polling Telegram.</p>
+      </section>
 
-🚀 How It Works
-1. User writes a message to the bot
-2. The bot sends the message text to this endpoint:
-POST https://api.swipies.app/api/v1/chats_openai/<chat_id>/chat/completions
+      <section class="card">
+        <h2>🧠 Core Function</h2>
+        <p class="muted">The main helper sends the prompt to Swipies AI and returns final text:</p>
+        <pre><code>async def swipies_request(text: str) -&gt; str:
+    # sends prompt and parses streaming response
+</code></pre>
+      </section>
 
+      <section class="card">
+        <h2>📬 Example Interaction</h2>
+        <p class="muted"><strong>User:</strong> Hello, what can you do?</p>
+        <p class="muted"><strong>Bot:</strong> I am Swipies AI assistant, ready to help you…</p>
+      </section>
 
-(Currently using chat ID 88584bb6d5fa11f0968c96bf0244a63a in the code)
+      <section class="card">
+        <h2>⚠️ Notes</h2>
+        <ul>
+          <li>Replace hard-coded API keys with environment variables for production.</li>
+          <li>This version does <strong>not</strong> stream partial responses to Telegram — it only sends the final text.</li>
+          <li>Verify your Swipies AI chat ID and model name are valid.</li>
+        </ul>
+      </section>
 
-3. Swipies AI returns streaming data in the format:
-data:{...JSON...}
-data:{...JSON...}
-data:[DONE]
+      <section class="card">
+        <h2>📄 License</h2>
+        <p class="muted">This project is free to use and modify.</p>
+      </section>
 
-4. The script parses and reconstructs the final answer
-5. The bot replies to the user with the output
-▶️ Run the Bot
+    </main>
 
-Simply run:
+    <footer>
+      Made with ❤ — Swipies AI Telegram Bot README
+    </footer>
+  </div>
 
-python main.py
-
-
-If the token is correct, the bot will start polling Telegram.
-
-🧠 Swipies Request Function
-
-The core function is:
-
-async def swipies_request(text: str) -> str:
-
-
-It sends the user prompt to Swipies AI and returns the final generated text.
-
-📬 Example Interaction
-
-User:
-
-Hello, what can you do?
-
-Bot:
-
-I am Swipies AI assistant, ready to help you…
-
-⚠️ Notes
-
-Replace the hard-coded API key with environment variables for production.
-
-This version does not support streaming to Telegram, only final text output.
-
-Make sure your Swipies AI chat ID and model name are valid.
-
-📄 License
-
-This project is free to use and modify.
+  <script>
+    // small enhancement: enable selecting and copying code when clicking on it
+    document.querySelectorAll('pre').forEach(pre => {
+      pre.addEventListener('click', () => {
+        try{const range = document.createRange(); range.selectNodeContents(pre); const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range); document.execCommand('copy');
+          pre.animate([{background:'#12202b'},{background:'rgba(255,255,255,0.02)'}],{duration:250,iterations:1});
+        }catch(e){/* ignore */}
+      });
+    });
+  </script>
+</body>
+</html>
